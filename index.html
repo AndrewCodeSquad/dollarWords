@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>dollar words!</title>
+</head>
+<body>
+	<h1>dollar words</h1>
+	<p>What is the word?</p>
+	<input type="text" id="textEntry">
+	<button onclick="eval()" id='myBtn'>Calculate</button>
+	<p id="display">______________</p>
+	<p>Dollar Word(s):</p>
+	<p id="dollarWords"></p>
+	<!-- Some dollar words: thirty, browser, excellent, hospital, twisted, shattered, reversal, upsets, unbroken -->
+
+	<script>
+		let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+		// let userWord = prompt('What is the word?');
+		let wordList = '';
+		let sum=0;
+		
+		var input = document.getElementById('textEntry'); // Get input field
+		input.addEventListener("keyup", function(event) {// Execute function when the user releases a key
+  		if (event.keyCode === 13) { // key #13 is the "Enter" key
+				event.preventDefault();  // Cancel the default action, if needed
+				document.getElementById("myBtn").click(); // Trigger the button element with a click
+  		}
+		});
+
+		function eval(){
+			let userWord = document.getElementById('textEntry').value;
+			for(i=0; i<letters.length; i++){
+				var character = userWord.charAt(i); // Find the letter at this position
+				var val = letters.indexOf(character) + 1; // Find the value of that letter
+				sum= sum + val; // Add each new value to existing sum
+			}
+			if(sum==100){
+				wordList = wordList + userWord + '<br>';
+			}
+			document.getElementById("display").innerHTML = "The value is " + sum;
+			document.getElementById("dollarWords").innerHTML = wordList;
+			sum = 0;
+		}
+
+
+	</script>
+</body>
+</html>
